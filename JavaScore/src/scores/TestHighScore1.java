@@ -2,15 +2,15 @@ package scores;
 	
 
 import java.util.*;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.Math.*;
 
 public class TestHighScore1 {
 	
 
 /**
-Demande le nom du joueur et le retourne
-@return name Le nom du joueur
+	Demande le nom du joueur et le retourne
+	@return name Le nom du joueur
 */
 	
 
@@ -22,24 +22,17 @@ private String askName(){
 		return name;
 	}
 
-private ArrayList choosescore(){
+private static ArrayList<Integer> choosescore() throws FileNotFoundException, EOFException{
 	boolean eof=false;
+	ArrayList<Integer> tableauscore = new ArrayList<Integer>();
+	int index = 0;
 	do{
-	try{
-		Scanner scanner file = new Scanner(./scoreSamples.txt);
-		int prochainentier = file.hasNextInt();
-		int index = 0;
-		ArrayList tableauscore = new ArrayList();
-		tableau.add(index,prochainentier);
-	}
-	catch(FileNotFoundException exception)
-	{
-		System.out.println("fichier non trouvé");
-	}
-	catch(EOFException e)
-	{
-		eof=true;
-	}
+		Scanner file = new Scanner("./scoreSamples.txt");
+		if (file.hasNextInt()){
+			int prochainentier = file.nextInt();
+			tableauscore.add(index,prochainentier);
+		}
+		file.close();
 	} while(!eof);
 	return tableauscore;
 }
@@ -47,10 +40,15 @@ private ArrayList choosescore(){
 		public static void main(String [] arg){
 			TestHighScore1 test1 = new TestHighScore1();
 			String name = test1.askName();
-			ArrayList tableauscore = new ArrayList();
-			tableauscore = choosescore();
+			ArrayList<Integer> tableauscore = new ArrayList<Integer>();
+			try {
+				tableauscore = choosescore();
+			} catch (FileNotFoundException | EOFException e) {
+				System.out.println("erreur");
+				e.printStackTrace();
+			}
 			int taille = tableauscore.size();
 			int score = (int)(Math.random() * taille);
 			System.out.println("Nom Joueur "+ name + "score " +  score);
 		}
-	}}
+}
