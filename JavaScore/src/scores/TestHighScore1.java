@@ -3,7 +3,6 @@ package scores;
 
 import java.util.*;
 import java.io.*;
-import java.lang.Math.*;
 
 public class TestHighScore1 {
 	
@@ -19,21 +18,24 @@ private String askName(){
 		System.out.println("Veuillez entrer le nom du joueur : ");
 		String name = sc.nextLine();
 		System.out.println("Votre joueur s'appelle : " + name);
+		sc.close();
 		return name;
 	}
 
-private static ArrayList<Integer> choosescore() throws FileNotFoundException, EOFException{
+private static ArrayList<Integer> choosescore() throws NumberFormatException, IOException{
 	boolean eof=false;
 	ArrayList<Integer> tableauscore = new ArrayList<Integer>();
 	int index = 0;
+	String file = "scoreSamples.txt";
+	BufferedReader br = new BufferedReader(new FileReader(file));
 	do{
-		Scanner file = new Scanner("./scoreSamples.txt");
-		if (file.hasNextInt()){
-			int prochainentier = file.nextInt();
+			
+			int prochainentier = Integer.parseInt(br.readLine());
 			tableauscore.add(index,prochainentier);
-		}
-		file.close();
+			index++;
+			
 	} while(!eof);
+	br.close();
 	return tableauscore;
 }
 
@@ -43,12 +45,12 @@ private static ArrayList<Integer> choosescore() throws FileNotFoundException, EO
 			ArrayList<Integer> tableauscore = new ArrayList<Integer>();
 			try {
 				tableauscore = choosescore();
-			} catch (FileNotFoundException | EOFException e) {
+			} catch (NumberFormatException | IOException e) {
 				System.out.println("erreur");
 				e.printStackTrace();
 			}
 			int taille = tableauscore.size();
-			int score = (int)(Math.random() * taille);
-			System.out.println("Nom Joueur "+ name + "score " +  score);
+			int index = (int)(Math.random() * taille);
+			System.out.println("Nom Joueur "+ name + " score " +  tableauscore.get(index));
 		}
 }
