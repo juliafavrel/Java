@@ -4,7 +4,7 @@ package scores;
 import java.util.*;
 import java.io.*;
 
-public class TestHighScore1 {
+public class TestHighScore {
 	
 
 /**
@@ -22,35 +22,39 @@ private String askName(){
 		return name;
 	}
 
-private static ArrayList<Integer> choosescore() throws NumberFormatException, IOException{
-	boolean eof=false;
+private static ArrayList<Integer> chooseScore(){
 	ArrayList<Integer> tableauscore = new ArrayList<Integer>();
 	int index = 0;
 	String file = "scoreSamples.txt";
-	BufferedReader br = new BufferedReader(new FileReader(file));
-	do{
-			
+	BufferedReader br = null;
+	try{
+		br = new BufferedReader(new FileReader(file));
+		while (br.readLine()!=null){
 			int prochainentier = Integer.parseInt(br.readLine());
 			tableauscore.add(index,prochainentier);
 			index++;
+		}
+		br.close();
 			
-	} while(!eof);
-	br.close();
+	} 
+	catch (IOException e) {
+		System.out.println("erreur io");
+		e.printStackTrace();
+	}
+	catch (NumberFormatException e) {
+		System.out.println("erreur number");
+		e.printStackTrace();
+	}
 	return tableauscore;
 }
 
-		public static void main(String [] arg){
-			TestHighScore1 test1 = new TestHighScore1();
+	public static void main(String [] arg){
+			TestHighScore test1 = new TestHighScore();
 			String name = test1.askName();
-			ArrayList<Integer> tableauscore = new ArrayList<Integer>();
-			try {
-				tableauscore = choosescore();
-			} catch (NumberFormatException | IOException e) {
-				System.out.println("erreur");
-				e.printStackTrace();
-			}
-			int taille = tableauscore.size();
+			ArrayList<Integer> tableauScore = new ArrayList<Integer>();
+			tableauScore = chooseScore();
+			int taille = tableauScore.size();
 			int index = (int)(Math.random() * taille);
-			System.out.println("Nom Joueur "+ name + " score " +  tableauscore.get(index));
+			System.out.println("Nom Joueur "+ name + " score " +  tableauScore.get(index));
 		}
 }
