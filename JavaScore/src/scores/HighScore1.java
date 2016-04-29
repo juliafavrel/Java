@@ -3,7 +3,7 @@ package scores;
 import java.io.*;
 import java.net.*;
 
-public class HighScore {
+public class HighScore1 {
 	
 	public static String[] getScores(){
 		int index=0;

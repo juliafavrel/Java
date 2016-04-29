@@ -4,7 +4,7 @@ package scores;
 import java.util.*;
 import java.io.*;
 
-public class TestHighScore {
+public class TestHighScore1 {
 	
 
 /**
@@ -49,7 +49,7 @@ private static ArrayList<Integer> chooseScore(){
 }
 
 	public static void main(String [] arg){
-			TestHighScore test1 = new TestHighScore();
+			TestHighScore1 test1 = new TestHighScore1();
 			String name = test1.askName();
 			ArrayList<Integer> tableauScore = new ArrayList<Integer>();
 			tableauScore = chooseScore();
