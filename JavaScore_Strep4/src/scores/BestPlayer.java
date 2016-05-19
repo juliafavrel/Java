@@ -1,6 +1,8 @@
 package scores;
 
-import java.util.Comparator;
+import java.util.*;
+import java.io.*;
+import java.net.*;
 
 public class BestPlayer implements Comparable<BestPlayer>{
 	String player;

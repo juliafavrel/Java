@@ -17,6 +17,7 @@ public class HighScore {
 		String[] tabScore = new String[100];
 		BufferedReader in = null;
 		try {
+
 			URL url = new URL("https://api.thingspeak.com/channels/109390/feeds.csv");
 			URLConnection connexion = url.openConnection();
 			in = new BufferedReader(new InputStreamReader(connexion.getInputStream()));
@@ -28,6 +29,7 @@ public class HighScore {
 				index++;
 			}
 			in.close();
+
 		} catch (FileNotFoundException e) {
 			System.out.println("erreur fichier non trouvé");
 			e.printStackTrace();
@@ -75,11 +77,11 @@ public class HighScore {
 	*	Modifie les données de ThingSpeack avec les données du joueur et son score
 	*	@param p Joueur pour lequel on veut envoyer les données à ThingSpeak
 	*/
-    public void sendScore(BestPlayer p){
+    public static void sendScore(BestPlayer p){
         	try {
             	String nom = p.getName();
             	int score = p.getScore();
-            	URL getURL = new URL("GET https://api.thingspeak.com/update?api_key=HA29IZ5RO3W2ROL5&field1="+score+ "&field2="+nom);
+            	URL getURL = new URL("https://api.thingspeak.com/update?api_key=HA29IZ5RO3W2ROL5&field1="+score+ "&field2="+nom);
             	getURL.openStream();
         	} catch (Exception e) { e.printStackTrace(); }
     }

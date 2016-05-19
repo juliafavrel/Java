@@ -3,6 +3,8 @@ package scores;
 
 import java.util.*;
 import java.io.*;
+import java.net.*;
+
 
 public class TestHighScore {
 	
@@ -12,11 +14,21 @@ public class TestHighScore {
 *	@param args Non utilisés
 */
 public static void main(String [] arg){
-			//Demande le nom du joueur
-			Scanner sc = new Scanner(System.in);
-			System.out.println("Veuillez entrer le nom du joueur : ");
-			String name = sc.nextLine();
-			sc.close();
+	//Demande le nom du joueur
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Veuillez entrer le nom du joueur : ");
+	String name = sc.nextLine();
+	boolean jeu = true;
+
+	while(jeu) {
+		
+		//ask for a new game	
+		System.out.println("Voulez vous joueur au jeu ? (oui/non)");
+		String answer = sc.nextLine();
+		String oui="oui";
+		String non = "non";
+		if ((answer.charAt(0)==oui.charAt(0))&&(answer.charAt(1)==oui.charAt(1))&&(answer.charAt(2)==oui.charAt(2))){
+
 			
 			//Récupère les scores de scoreSamples.txt
 			ArrayList<Integer> tableauscore = new ArrayList<Integer>();
@@ -45,7 +57,8 @@ public static void main(String [] arg){
 			int i = (int)(Math.random() * index);
 
 			//Affiche le nom du joueur et son score choisi aléatoirement
-			System.out.println("Nom Joueur : "+ name + " score : " +  tableauscore.get(i));
+			int score = tableauscore.get(i);
+			System.out.println("Nom Joueur : "+ name + " score : " +  score);
 			
 			//Affiche tous les scores qui sont en ligne
 			System.out.println("Les scores en lignes sont : ");
@@ -53,11 +66,31 @@ public static void main(String [] arg){
 			for (i = 0 ; i< scores.length ; i++)
 					System.out.println(scores[i]);
 			
+
 			//Affiche les 10 meilleurs joueurs
 			BestPlayer[] top10 = HighScore.tenBestScores(scores);
 			for(i=0;i<10;i++){
 				System.out.println(top10[i].getName() + " : " + top10[i].getScore());
 			}
+
+			//Si le joueur a un score suffisant, l'ajoute dans le top 10
+			for (BestPlayer p : top10)
+        	{
+            		if (p.getScore() < score)
+            		{
+                		HighScore.sendScore(new BestPlayer(name,score));
+                		break;
+            		}
+        	}
 			
+		}
+		else if ((answer.charAt(0)==non.charAt(0))&&(answer.charAt(1)==non.charAt(1))){
+			jeu = false;
+		}
+		else{
+			System.err.println("Veuillez entrez oui ou non");
+		}
+	}
+	sc.close();
 	}
 }
