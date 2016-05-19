@@ -8,11 +8,9 @@ public class TestHighScore1 {
 	
 
 /**
-	Demande le nom du joueur et le retourne
-	@return name Le nom du joueur
+*	Demande le nom du joueur et le retourne
+*	@return name Le nom du joueur
 */
-	
-
 private String askName(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Veuillez entrer le nom du joueur : ");
@@ -22,6 +20,11 @@ private String askName(){
 		return name;
 	}
 
+
+/**
+*	Recupère les scores de scoreSample.txt et les retourne
+*	@return tableauscore Le tableau dynamique contenant les scores de scoreSample.txt
+*/
 private static ArrayList<Integer> chooseScore(){
 	ArrayList<Integer> tableauscore = new ArrayList<Integer>();
 	int index = 0;
@@ -48,7 +51,11 @@ private static ArrayList<Integer> chooseScore(){
 	return tableauscore;
 }
 
-	public static void main(String [] arg){
+/**
+*	Demande le nom du joueur, récupère les scores du fichier .txt et affecte au joueur un score aléatoire parmi ceux récupérés
+*	@param args Non utilisés
+*/
+public static void main(String [] arg){
 			TestHighScore1 test1 = new TestHighScore1();
 			String name = test1.askName();
 			ArrayList<Integer> tableauScore = new ArrayList<Integer>();

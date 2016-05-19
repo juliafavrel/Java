@@ -5,7 +5,11 @@ import java.net.*;
 
 public class HighScore1 {
 	
-	public static String[] getScores(){
+/**
+*	Se connecte à l'URL donné, récupère chaque ligne de feed.csv de notre ThingSpeack et les renvoie dans un tableau de String
+*	@return tabScore Le tableau de String contenant les lignes des renseignements récupérés de l'URL
+*/
+public static String[] getScores(){
 		int index=0;
 		String[] tabScore = new String[100];
 		BufferedReader br = null;
