@@ -47,7 +47,7 @@ public class HighScore {
 		while (index < readScores.length){
 			String ligne[] = readScores[index].split(",");
 			
-			BestPlayer joueur_actuel = new BestPlayer(ligne[2],Integer.parseInt(ligne[3]));
+			BestPlayer joueur_actuel = new BestPlayer(ligne[3],Integer.parseInt(ligne[2]));
 			allBest.add(joueur_actuel);
 			index++;
 		}
@@ -60,4 +60,7 @@ public class HighScore {
 		}
 		return top10;
 	}
+
+	
+
 }

@@ -8,11 +8,10 @@ public class TestHighScore {
 	
 
 /**
-	Demande le nom du joueur et le retourne
-	@return name Le nom du joueur
+*	Demande le nom du joueur et le retourne
+*	@return name Le nom du joueur
 */
-
-	public static void main(String [] arg){
+public static void main(String [] arg){
 			//Partie 1
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Veuillez entrer le nom du joueur : ");
@@ -53,7 +52,7 @@ public class TestHighScore {
 			//Partie 2
 			BestPlayer[] top10 = HighScore.tenBestScores(scores);
 			for(i=0;i<10;i++){
-				System.out.println(top10[i].getScore());
+				System.out.println(top10[i].getName() + " : " + top10[i].getScore());
 			}
 			
 	}
