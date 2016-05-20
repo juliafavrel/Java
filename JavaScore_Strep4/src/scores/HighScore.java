@@ -14,7 +14,7 @@ public class HighScore {
 	*/
 	public static String[] getScores(){
 		int index=0;
-		String[] tabScore = new String[100];
+		String[] tabScore = new String[1000];
 		BufferedReader in = null;
 		try {
 
@@ -24,7 +24,6 @@ public class HighScore {
 			
 			String nextLine = in.readLine();
 			while ((nextLine = in.readLine()) != null && nextLine.length()>=1){
-				System.out.println(nextLine);
 				tabScore[index]=nextLine;
 				index++;
 			}
