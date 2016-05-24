@@ -1,8 +1,8 @@
 # Projet Java IG3
 
 ## AUTEURS : 
-  ## Julia FAVREL ##
-  ## Vincent GUERIN ##
+  ** _Julia FAVREL_ **
+  ** _Vincent GUERIN_ **
 
 ## STEP 1 
 
